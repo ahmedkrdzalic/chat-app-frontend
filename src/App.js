@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { socket } from "./socket";
 import axios from "axios";
 import { ConnectionState } from "./components/ConnectionState";
-import { LoginContext } from "./helpers/LoginContext";
+import { LoginContext } from "./contexts/LoginContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import { Registration } from "./pages/Registration";
@@ -15,12 +15,14 @@ export default function App() {
   const [user, setUser] = useState(null);
 
   function connect() {
+    socket.auth = { token: localStorage.getItem("token") };
     socket.connect();
   }
 
   function disconnect() {
     socket.disconnect();
   }
+
   useEffect(() => {
     if (user) {
       connect();
