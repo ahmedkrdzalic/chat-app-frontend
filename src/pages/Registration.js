@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { LoginContext } from "../helpers/LoginContext";
+import { LoginContext } from "../contexts/LoginContext";
 
 const RegistrationSchema = Yup.object().shape({
   name: Yup.string()

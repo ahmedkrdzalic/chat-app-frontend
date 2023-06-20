@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { LoginContext } from "../helpers/LoginContext";
+import { LoginContext } from "../contexts/LoginContext";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -37,6 +37,11 @@ export const Login = () => {
         if (response.status === 200 && response.data.user) {
           setUser(response.data.user);
           localStorage.setItem("user", JSON.stringify(response.data.user));
+          let cookieValue = document.cookie.replace(
+            /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
+            "$1"
+          );
+          localStorage.setItem("token", cookieValue);
           return;
         }
       })

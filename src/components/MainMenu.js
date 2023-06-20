@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import { LoginContext } from "../helpers/LoginContext";
+import { LoginContext } from "../contexts/LoginContext";
 import { Link, Navigate } from "react-router-dom";
 
 function MainMenu() {
@@ -17,6 +17,7 @@ function MainMenu() {
       .then((response) => {
         setUser(null);
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
         Navigate(`/`);
       })
       .catch((err) => {
