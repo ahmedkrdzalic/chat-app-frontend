@@ -2,25 +2,45 @@ import React, { useContext, useEffect, useState } from "react";
 import { socket } from "../socket";
 import { LoginContext } from "../contexts/LoginContext";
 import ScrollToBottom from "react-scroll-to-bottom";
+import moment from "moment";
+import axios from "axios";
 
 function Room({ room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const { user } = useContext(LoginContext);
 
+  useEffect(() => {
+    //fetch recent messages from the room
+    axios
+      .get(`http://localhost:4000/messages/room/${room._id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data) {
+          setMessageList(response.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }, []);
+
   const sendMessage = async () => {
-    if (currentMessage !== "") {
+    if (currentMessage.trim() !== "") {
       const messageData = {
-        room: room._id,
-        author: user.email,
+        room: { _id: room._id, name: room.name },
+        author: { _id: user._id, email: user.email },
         message: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: new Date(Date.now()),
       };
 
       await socket.emit("send_message", messageData);
+      console.log(messageList);
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
     }
@@ -49,15 +69,21 @@ function Room({ room }) {
             return (
               <div
                 className="message"
-                id={user.email === messageContent.author ? "me" : "stranger"}
+                id={
+                  user.email === messageContent.author.email ? "me" : "stranger"
+                }
               >
                 <div>
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
                   <div className="message-meta">
-                    <p id="time">{messageContent.time}</p>
-                    <p id="author">{messageContent.author}</p>
+                    <p id="time">
+                      {moment(messageContent.time).format(
+                        "DD:MM:YYYY HH:mm:ss"
+                      )}
+                    </p>
+                    <p id="author">{messageContent.author.email}</p>
                   </div>
                 </div>
               </div>
