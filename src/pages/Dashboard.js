@@ -7,10 +7,13 @@ function Dashboard() {
   const [rooms, setRooms] = useState([]);
   const [room, setRoom] = useState(null);
 
+  console.log(process.env.REACT_APP_BACKEND_URL);
+
   //fetch all public rooms
   useEffect(() => {
+    let url = process.env.REACT_APP_BACKEND_URL + `/rooms`;
     axios
-      .get(`http://localhost:4000/rooms`, {
+      .get(url, {
         headers: {
           "Content-Type": "application/json",
         },

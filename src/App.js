@@ -32,11 +32,17 @@ export default function App() {
   }, [user]);
 
   useEffect(() => {
+    socket.on("error", (data) => {
+      alert(data);
+    });
+  }, []);
+
+  useEffect(() => {
     if (localStorage.getItem("user")) {
       setUser(JSON.parse(localStorage.getItem("user")));
     } else {
       axios
-        .get(`http://localhost:4000/users/profile`, {
+        .get(process.env.REACT_APP_BACKEND_URL + `/users/profile`, {
           headers: {
             "Content-Type": "application/json",
           },

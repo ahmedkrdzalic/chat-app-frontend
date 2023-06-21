@@ -8,7 +8,7 @@ function MainMenu() {
 
   const logout = () => {
     axios
-      .get(`http://localhost:4000/sign/logout`, {
+      .get(process.env.REACT_APP_BACKEND_URL + `/sign/logout`, {
         headers: {
           "Content-Type": "application/json",
         },
