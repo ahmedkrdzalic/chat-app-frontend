@@ -39,7 +39,7 @@ function Room({ room }) {
       };
 
       await socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]);
+      setMessageList((list) => [messageData, ...list]);
       setCurrentMessage("");
     }
   };
@@ -52,7 +52,7 @@ function Room({ room }) {
   useEffect(() => {
     socket.on("receive_message", (data) => {
       //   console.log(data);
-      setMessageList((list) => [...list, data]);
+      setMessageList((list) => [data, ...list]);
     });
   }, [socket]);
 
@@ -63,7 +63,7 @@ function Room({ room }) {
 
       <div className="chat-body">
         <ScrollToBottom className="message-container">
-          {messageList.map((messageContent) => {
+          {messageList.toReversed().map((messageContent) => {
             return (
               <div
                 className="message"
