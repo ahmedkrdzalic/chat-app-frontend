@@ -20,7 +20,6 @@ function Room({ room }) {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
         if (response.data) {
           setMessageList(response.data);
         }
@@ -28,7 +27,7 @@ function Room({ room }) {
       .catch((error) => {
         console.log(error.response);
       });
-  }, []);
+  }, [room]);
 
   const sendMessage = async () => {
     if (currentMessage.trim() !== "") {
@@ -40,7 +39,6 @@ function Room({ room }) {
       };
 
       await socket.emit("send_message", messageData);
-      console.log(messageList);
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
     }
@@ -49,7 +47,7 @@ function Room({ room }) {
   useEffect(() => {
     //join room
     socket.emit("join_room", room?._id);
-  }, []);
+  }, [room]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {

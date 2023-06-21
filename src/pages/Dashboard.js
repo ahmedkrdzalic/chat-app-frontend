@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Room from "../components/Room";
 import axios from "axios";
+import { socket } from "../socket";
 
 function Dashboard() {
   const [rooms, setRooms] = useState([]);
@@ -25,9 +26,6 @@ function Dashboard() {
       });
   }, []);
 
-  //create room
-  //join room
-
   return (
     <div>
       <h1>Dashboard</h1>
@@ -36,7 +34,14 @@ function Dashboard() {
         {rooms.map((r) => (
           <li key={r?._id}>
             <p>{r?.name}</p>
-            <button onClick={() => setRoom(r)}>Join</button>
+            <button
+              onClick={() => {
+                socket.emit("leave_room", room?._id);
+                setRoom(r);
+              }}
+            >
+              Join
+            </button>
           </li>
         ))}
       </ul>
