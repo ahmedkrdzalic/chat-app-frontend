@@ -1,38 +1,236 @@
-.App {
-  text-align: center;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #025464;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a {
+  color: rgb(232, 170, 66);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+a:hover {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App {
+  height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.home {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+/*========= MENU ============= */
+
+.main-menu-container {
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  z-index: 9999;
+  border-bottom: solid #e57c23 2px;
+}
+
+.menu-item {
+  color: #e57c23;
+  text-decoration: none;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.menu-item:hover {
+  color: white;
+  background-color: rgb(232, 170, 66);
+  /* Add other styles for menu items on hover if needed */
+}
+
+.connection-container {
+  color: #333;
+  padding: 5px 10px;
+  background-color: rgb(232, 170, 66);
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  border: solid #333 1px;
+}
+
+.connection-online {
+  margin: 5px;
+  color: white;
+  background-color: #18af18;
+  height: 10px;
+  width: 10px;
+  border: solid #333 1px;
+  border-radius: 10px;
+}
+
+.connection-offline {
+  margin: 5px;
+  color: white;
+  background-color: #af1818;
+  height: 10px;
+  width: 10px;
+  border: solid #333 1px;
+  border-radius: 10px;
+}
+
+/* ============================== */
+
+/* ========= DASHBOARD ========== */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  color: white;
+}
+
+.dashboard-info {
+  padding-top: 20px;
+  padding-right: 15px;
+  padding-left: 20px;
+  border-right: solid #e57c23 5px;
+}
+
+.online-users-list {
+  margin-bottom: 20px;
+}
+
+.online-users {
+  display: flex;
+  align-items: center;
+  border-bottom: solid #e57c23 2px;
+}
+
+.online-users .title {
+  font-size: larger;
+}
+
+.online-users-list div {
+  align-items: center;
+  font-size: smaller;
+  padding-left: 10px;
+}
+
+.rooms {
+  display: flex;
+  align-items: center;
+  border-bottom: solid #e57c23 2px;
+  margin-bottom: 20px;
+}
+
+.rooms .title {
+  font-size: larger;
+}
+
+.room {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: smaller;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.room button {
+  padding: 5px 10px;
+  font-size: smaller;
+  border: solid 1px orange;
+  border-radius: 10px;
+}
+
+/* CHAT ========== */
+
+.dashboard-chat {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.room-info-name {
+  font-size: large;
+  color: #b3b3b3;
+}
+
+.room-info-name span {
+  font-size: xx-large;
+  color: #e57c23;
+}
+
+.room-info-id {
+  font-size: small;
+  color: #b3b3b3;
+}
+
+.chat-body {
+  background-color: #af1818;
+  height: 400px;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+/* ============================== */
+
+/*=========== LOGIN & REGISTRATION ============= */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container h1 {
+  color: #e57c23;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 5px;
+}
+
+.field {
+  padding: 5px 10px;
+}
+
+.field-error {
+  color: white;
+}
+
+.form button {
+  color: white;
+  background-color: #e57c23;
+  padding: 5px 10px;
+}
+
+.form button:hover {
+  color: white;
+  background-color: #e57c23;
+  outline: solid 1px white;
+  padding: 5px 10px;
+}
+
+/*======================== */

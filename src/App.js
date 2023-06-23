@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { socket } from "./socket";
 import axios from "axios";
-import { ConnectionState } from "./components/ConnectionState";
 import { LoginContext } from "./contexts/LoginContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import { Registration } from "./pages/Registration";
 import { Login } from "./pages/Login";
 import MainMenu from "./components/MainMenu";
+import "./App.css";
 
 export default function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
@@ -80,10 +80,9 @@ export default function App() {
 
   return (
     <div className="App">
-      <ConnectionState isConnected={isConnected} />
       <LoginContext.Provider value={{ user, setUser }}>
         <Router>
-          <MainMenu />
+          <MainMenu isConnected={isConnected} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/registration" element={<Registration />} />

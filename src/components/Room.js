@@ -57,19 +57,22 @@ function Room({ room }) {
   }, [socket]);
 
   return (
-    <div>
-      <h3>Room: {room?.name}</h3>
-      <p>{room?._id}</p>
+    <div className="dashboard-chat">
+      <div className="room-info">
+        <div className="room-info-name">
+          Room: <span>{room?.name}</span>
+        </div>
+        <div className="room-info-id">{room?._id}</div>
+      </div>
 
       <div className="chat-body">
-        <ScrollToBottom className="message-container">
+        <ScrollToBottom className="messages-container">
           {messageList.toReversed().map((messageContent) => {
             return (
               <div
-                className="message"
-                id={
+                className={`message ${
                   user.email === messageContent.author.email ? "me" : "stranger"
-                }
+                }`}
               >
                 <div>
                   <div className="message-content">

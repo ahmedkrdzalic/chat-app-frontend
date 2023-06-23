@@ -56,7 +56,7 @@ export const Registration = () => {
   }, []);
 
   return (
-    <div>
+    <div className="form-container">
       <h1>Registration</h1>
       <Formik
         initialValues={{
@@ -69,20 +69,32 @@ export const Registration = () => {
         onSubmit={Registration_Submit}
       >
         {({ errors, touched }) => (
-          <Form>
-            <Field name="name" />
+          <Form className="form">
+            <Field name="name" className="field" placeholder="name" />
             {errors.firstName && touched.firstName ? (
-              <div>{errors.firstName}</div>
+              <div className="field-error">{errors.firstName}</div>
             ) : null}
-            <Field name="surname" />
+            <Field name="surname" className="field" placeholder="surname" />
             {errors.lastName && touched.lastName ? (
-              <div>{errors.lastName}</div>
+              <div className="field-error">{errors.lastName}</div>
             ) : null}
-            <Field name="email" type="email" />
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
-            <Field name="password" type="password" />
+            <Field
+              name="email"
+              type="email"
+              className="field"
+              placeholder="email"
+            />
+            {errors.email && touched.email ? (
+              <div className="field-error">{errors.email}</div>
+            ) : null}
+            <Field
+              name="password"
+              type="password"
+              className="field"
+              placeholder="password"
+            />
             {errors.password && touched.password ? (
-              <div>{errors.password}</div>
+              <div className="field-error">{errors.password}</div>
             ) : null}
             <button type="submit">Submit</button>
           </Form>

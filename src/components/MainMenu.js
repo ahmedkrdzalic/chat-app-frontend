@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useContext } from "react";
 import { LoginContext } from "../contexts/LoginContext";
 import { Link, Navigate } from "react-router-dom";
+import { ConnectionState } from "./ConnectionState";
 
-function MainMenu() {
+function MainMenu({ isConnected }) {
   const { user, setUser } = useContext(LoginContext);
 
   const logout = () => {
@@ -26,28 +27,31 @@ function MainMenu() {
   };
 
   return (
-    <div>
-      <Link className="" to="/">
+    <div className="main-menu-container">
+      <Link className="menu-item" to="/">
         Home
       </Link>
 
       {user ? (
         <>
-          <Link className="" to="/dashboard">
+          <Link className="menu-item" to="/dashboard">
             Dashboard
           </Link>
-          <button onClick={logout}>Logout</button>
+          <button onClick={logout} className="menu-item">
+            Logout
+          </button>
         </>
       ) : (
         <>
-          <Link className="" to="/login">
+          <Link className="menu-item" to="/login">
             Login
           </Link>
-          <Link className="" to="/registration">
+          <Link className="menu-item" to="/registration">
             Register
           </Link>
         </>
       )}
+      <ConnectionState className="menu-item" isConnected={isConnected} />
     </div>
   );
 }

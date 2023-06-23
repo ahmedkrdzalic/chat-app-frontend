@@ -38,35 +38,42 @@ function Dashboard() {
   }, [socket]);
 
   return (
-    <div className="main-container">
-      <div className="online-users-container">
-        <h2 className="title">Online Users</h2>
-        <ul className="online-users-list">
-          {onlineUsers.map((u) => (
-            <li key={u?._id}>
-              <p>{u?.email}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="rooms-container">
-        <h2 className="title">Rooms</h2>
-        <ul className="rooms-list">
-          {rooms.map((r) => (
-            <li key={r?._id}>
-              <p className="rooms-list-name">{r?.name}</p>
-              <button
-                className="join-room-button"
-                onClick={() => {
-                  socket.emit("leave_room", room?._id);
-                  setRoom(r);
-                }}
-              >
-                Join
-              </button>
-            </li>
-          ))}
-        </ul>
+    <div className="dashboard-container">
+      <div className="dashboard-info">
+        <div className="online-users-container">
+          <div className="online-users">
+            <div className="title">Online Users</div>
+            <div className="connection-online"></div>
+          </div>
+          <div className="online-users-list">
+            {onlineUsers.map((u) => (
+              <div key={u?._id}>
+                <p>{u?.email}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rooms-container">
+          <div className="rooms">
+            <div className="title">Rooms</div>
+          </div>
+          <div className="rooms-list">
+            {rooms.map((r) => (
+              <div className="room" key={r?._id}>
+                <div className="rooms-name">{r?.name}</div>
+                <button
+                  className="join-room-button"
+                  onClick={() => {
+                    socket.emit("leave_room", room?._id);
+                    setRoom(r);
+                  }}
+                >
+                  Join
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       {room && <Room room={room} />}
     </div>
