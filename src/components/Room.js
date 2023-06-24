@@ -66,7 +66,7 @@ function Room({ room }) {
       </div>
 
       <div className="chat-body">
-        <ScrollToBottom className="messages-container">
+        <ScrollToBottom className="messages-container" mode="bottom">
           {messageList.toReversed().map((messageContent) => {
             return (
               <div
