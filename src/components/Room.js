@@ -62,7 +62,8 @@ function Room({ room }) {
         <div className="room-info-name">
           Room: <span>{room?.name}</span>
         </div>
-        <div className="room-info-id">{room?._id}</div>
+        <div className="room-info-id">_id: {room?._id}</div>
+        <hr />
       </div>
 
       <div className="chat-body">
@@ -76,15 +77,15 @@ function Room({ room }) {
               >
                 <div>
                   <div className="message-content">
-                    <p>{messageContent.message}</p>
+                    {messageContent.message}
                   </div>
                   <div className="message-meta">
-                    <p id="time">
+                    <div id="author">{messageContent.author.email}</div>
+                    <div id="time">
                       {moment(messageContent.time).format(
                         "DD:MM:YYYY HH:mm:ss"
                       )}
-                    </p>
-                    <p id="author">{messageContent.author.email}</p>
+                    </div>
                   </div>
                 </div>
               </div>

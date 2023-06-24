@@ -173,8 +173,11 @@ a:hover {
   color: #b3b3b3;
 }
 
+.room-info hr {
+  border: solid #026174 1px;
+}
+
 .chat-body {
-  background-color: #af1818;
   height: 400px;
   padding: 10px;
   overflow-y: scroll;
@@ -183,13 +186,84 @@ a:hover {
 .messages-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .message {
+  height: auto;
+  padding: 10px;
+  display: flex;
+}
+
+.message .message-content {
+  width: fit-content;
+  max-width: 400px;
+  border-radius: 15px;
+  color: white;
+  padding: 10px 10px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.message-meta {
+  font-size: xx-small;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  color: #6cc7da;
+}
+
+.me {
+  justify-content: flex-end;
+}
+
+.me div {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.me .message-content {
+  background-color: #e57c23;
+  text-align: right;
+}
+
+.me .message-meta {
+  justify-content: flex-end;
+  text-align: end;
+}
+
+.stranger {
+  justify-content: flex-start;
+}
+
+.stranger .message-content {
+  background-color: #e8aa42;
+  text-align: left;
+}
+
+.stranger .message-meta {
+  justify-content: flex-start;
+  text-align: start;
+}
+
+.chat-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 3px;
+}
+
+.chat-footer input {
+  width: 100%;
+  padding: 5px 10px;
+}
+
+.chat-footer button {
+  color: white;
+  background-color: #e57c23;
+  margin-left: 3px;
+  padding: 5px 10px;
+  font-size: medium;
+  border: solid 1px orange;
 }
 
 /* ============================== */
