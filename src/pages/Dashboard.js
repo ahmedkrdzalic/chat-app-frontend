@@ -8,8 +8,6 @@ function Dashboard() {
   const [room, setRoom] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
 
-  console.log(process.env.REACT_APP_BACKEND_URL);
-
   //fetch all public rooms
   useEffect(() => {
     let url = process.env.REACT_APP_BACKEND_URL + `/rooms`;
@@ -32,7 +30,6 @@ function Dashboard() {
 
   useEffect(() => {
     socket.on("get-users", (data) => {
-      console.log(data);
       setOnlineUsers(data);
     });
   }, [socket]);
