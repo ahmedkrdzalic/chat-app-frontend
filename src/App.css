@@ -116,9 +116,14 @@ a:hover {
 }
 
 .online-users-list div {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: smaller;
-  padding-left: 10px;
+}
+
+.online-users-list div button {
+  margin-left: 3px;
 }
 
 .rooms {

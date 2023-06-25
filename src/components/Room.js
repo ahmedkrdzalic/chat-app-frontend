@@ -51,6 +51,7 @@ function Room({ room }) {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
+      console.log("receive message: ", data);
       setMessageList((list) => [data, ...list]);
     });
   }, [socket]);

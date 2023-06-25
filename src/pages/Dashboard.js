@@ -46,6 +46,17 @@ function Dashboard() {
             {onlineUsers.map((u) => (
               <div key={u?._id}>
                 <p>{u?.email}</p>
+                <button
+                  className="join-room-button"
+                  onClick={() => {
+                    //leave room or leave a chat with user
+                    socket.emit("leave_room", room?._id);
+                    //set room private chat with user
+                    setRoom({ _id: u?._id, name: u?.email });
+                  }}
+                >
+                  Chat
+                </button>
               </div>
             ))}
           </div>
