@@ -31,7 +31,7 @@ export const Registration = () => {
 
   const Registration_Submit = async (data) => {
     await axios
-      .post(process.env.BACKEND_URL + "/sign/registration", data, {
+      .post(process.env.REACT_APP_BACKEND_URL + "/sign/registration", data, {
         headers: {
           "Content-Type": "application/json",
         },

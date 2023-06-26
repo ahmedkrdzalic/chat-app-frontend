@@ -13,7 +13,7 @@ function Room({ room }) {
   useEffect(() => {
     //fetch recent messages from the room
     axios
-      .get(process.env.BACKEND_URL + `/messages/room/${room._id}`, {
+      .get(process.env.REACT_APP_BACKEND_URL + `/messages/room/${room._id}`, {
         headers: {
           "Content-Type": "application/json",
         },

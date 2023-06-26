@@ -8,8 +8,10 @@ function MainMenu({ isConnected }) {
   const { user, setUser } = useContext(LoginContext);
 
   const logout = () => {
+    console.log(process.env.REACT_APP_BACKEND_URL + `/sign/logout`);
+
     axios
-      .get(process.env.BACKEND_URL + `/sign/logout`, {
+      .get(process.env.REACT_APP_BACKEND_URL + `/sign/logout`, {
         headers: {
           "Content-Type": "application/json",
         },

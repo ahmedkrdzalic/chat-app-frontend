@@ -10,7 +10,7 @@ function Dashboard() {
 
   //fetch all public rooms
   useEffect(() => {
-    let url = process.env.BACKEND_URL + `/rooms`;
+    let url = process.env.REACT_APP_BACKEND_URL + `/rooms`;
     axios
       .get(url, {
         headers: {
