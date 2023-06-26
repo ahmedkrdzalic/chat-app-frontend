@@ -27,6 +27,7 @@ export const Login = () => {
       .post(link, data, {
         withCredentials: true,
         headers: {
+          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
       })
