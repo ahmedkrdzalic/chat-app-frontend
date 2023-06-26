@@ -1,5 +1,14 @@
 Run this app:
 
+Dockerized:
+
+1. Clone this repository
+2. Make sure that you added ENV variables
+3. Install Docker and Docker Compose
+4. Run `docker-compose up --build` in the root folder
+
+Not Dockerized:
+
 1. Clone this repository
 2. Run `npm install` in the frontend folder
 3. Make sure that you added ENV variables
