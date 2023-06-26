@@ -42,7 +42,7 @@ export default function App() {
       setUser(JSON.parse(localStorage.getItem("user")));
     } else {
       axios
-        .get(process.env.REACT_APP_BACKEND_URL + `/users/profile`, {
+        .get(process.env.BACKEND_URL + `/users/profile`, {
           headers: {
             "Content-Type": "application/json",
           },

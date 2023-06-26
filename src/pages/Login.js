@@ -22,7 +22,7 @@ export const Login = () => {
   const { user, setUser } = useContext(LoginContext);
 
   const Login_Submit = async (data) => {
-    let link = process.env.REACT_APP_BACKEND_URL + "/sign/login";
+    let link = process.env.BACKEND_URL + "/sign/login";
     await axios
       .post(link, data, {
         headers: {

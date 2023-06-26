@@ -9,7 +9,7 @@ function MainMenu({ isConnected }) {
 
   const logout = () => {
     axios
-      .get(process.env.REACT_APP_BACKEND_URL + `/sign/logout`, {
+      .get(process.env.BACKEND_URL + `/sign/logout`, {
         headers: {
           "Content-Type": "application/json",
         },
