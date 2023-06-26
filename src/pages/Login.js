@@ -25,10 +25,10 @@ export const Login = () => {
     let link = process.env.REACT_APP_BACKEND_URL + "/sign/login";
     await axios
       .post(link, data, {
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true,
       })
       .then((response) => {
         if (response.data.error) {
