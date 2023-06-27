@@ -30,7 +30,7 @@ export const Login = () => {
 
     fetch(link, {
       method: "POST",
-      mode: "same-origin",
+      mode: "cors",
       redirect: "follow",
       credentials: "include", // Don't forget to specify this if you need cookies
       headers: headers,
