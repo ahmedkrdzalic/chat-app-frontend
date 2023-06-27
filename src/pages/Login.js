@@ -49,6 +49,8 @@ export const Login = () => {
           setUser(result?.user);
           localStorage.setItem("user", JSON.stringify(result?.user));
           localStorage.setItem("token", result?.user?.token);
+          console.log(result?.user?.token);
+          console.log("token", localStorage.getItem("token"));
           // let cookieValue = document.cookie.replace(
           //   /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
           //   "$1"
