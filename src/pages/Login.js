@@ -23,34 +23,54 @@ export const Login = () => {
 
   const Login_Submit = async (data) => {
     let link = process.env.REACT_APP_BACKEND_URL + "/sign/login";
-    await axios
-      .post(link, data, {
-        withCredentials: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      })
+
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Accept", "application/json");
+
+    fetch(link, {
+      method: "POST",
+      mode: "same-origin",
+      redirect: "follow",
+      credentials: "include", // Don't forget to specify this if you need cookies
+      headers: headers,
+      body: JSON.stringify(data),
+    })
       .then((response) => {
-        if (response.data.error) {
-          alert(response.data.error);
-          return;
-        }
-        if (response.status === 200 && response.data.user) {
-          setUser(response.data.user);
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-          let cookieValue = document.cookie.replace(
-            /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
-            "$1"
-          );
-          localStorage.setItem("token", cookieValue);
-          return;
-        }
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
-        alert(error.response.data.error);
       });
+
+    // await axios
+    //   .post(link, data, {
+    //     withCredentials: true,
+    //     headers: {
+    //       "Access-Control-Allow-Origin": "*",
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //   .then((response) => {
+    //     if (response.data.error) {
+    //       alert(response.data.error);
+    //       return;
+    //     }
+    //     if (response.status === 200 && response.data.user) {
+    //       setUser(response.data.user);
+    //       localStorage.setItem("user", JSON.stringify(response.data.user));
+    //       let cookieValue = document.cookie.replace(
+    //         /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
+    //         "$1"
+    //       );
+    //       localStorage.setItem("token", cookieValue);
+    //       return;
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     alert(error.response.data.error);
+    //   });
   };
 
   useEffect(() => {
