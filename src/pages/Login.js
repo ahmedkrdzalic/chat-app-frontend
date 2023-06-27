@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import { LoginContext } from "../contexts/LoginContext";
 
 const LoginSchema = Yup.object().shape({
@@ -48,11 +48,11 @@ export const Login = () => {
         if (result?.user) {
           setUser(result?.user);
           localStorage.setItem("user", JSON.stringify(result?.user));
-          let cookieValue = document.cookie.replace(
-            /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
-            "$1"
-          );
-          localStorage.setItem("token", cookieValue);
+          // let cookieValue = document.cookie.replace(
+          //   /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
+          //   "$1"
+          // );
+          // localStorage.setItem("token", cookieValue);
           return;
         }
       })
