@@ -9,6 +9,7 @@ import { Registration } from "./pages/Registration";
 import { Login } from "./pages/Login";
 import MainMenu from "./components/MainMenu";
 import "./App.css";
+axios.defaults.withCredentials = true;
 
 export default function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
