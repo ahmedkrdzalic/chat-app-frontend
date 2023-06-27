@@ -37,10 +37,24 @@ export const Login = () => {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        console.log(response);
+        if (response.data.error) {
+          alert(response.data.error);
+          return;
+        }
+        if (response.status === 200 && response.data.user) {
+          setUser(response.data.user);
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          let cookieValue = document.cookie.replace(
+            /(?:(?:^|.*;\s*)token\s*\=\s*([^;]*).*$)|^.*$/,
+            "$1"
+          );
+          localStorage.setItem("token", cookieValue);
+          return;
+        }
       })
       .catch((error) => {
         console.log(error);
+        alert(error.response.data.error);
       });
 
     // await axios
