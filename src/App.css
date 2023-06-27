@@ -126,6 +126,11 @@ a:hover {
   margin-left: 3px;
 }
 
+.create-room-container {
+  display: flex;
+  align-items: center;
+}
+
 .rooms {
   display: flex;
   align-items: center;

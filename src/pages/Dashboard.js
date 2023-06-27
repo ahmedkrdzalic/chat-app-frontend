@@ -7,6 +7,7 @@ function Dashboard() {
   const [rooms, setRooms] = useState([]);
   const [room, setRoom] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [createRoomName, setCreateRoomName] = useState("");
 
   //fetch all public rooms
   useEffect(() => {
@@ -33,6 +34,35 @@ function Dashboard() {
       setOnlineUsers(data);
     });
   }, [socket]);
+
+  const createRoom = (name) => {
+    if (!name || name.trim() === "") {
+      return;
+    }
+    let url = process.env.REACT_APP_BACKEND_URL + `/rooms`;
+    axios
+      .post(
+        url,
+        {
+          name,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        if (response.data) {
+          setRooms([...rooms, response.data]);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.error || error.message);
+        alert(error.response.error || error.message);
+      });
+  };
 
   return (
     <div className="dashboard-container">
@@ -64,6 +94,21 @@ function Dashboard() {
         <div className="rooms-container">
           <div className="rooms">
             <div className="title">Rooms</div>
+          </div>
+          <div className="create-room-container">
+            <input
+              className="create-room-input"
+              placeholder="Room name"
+              onChange={(e) => setCreateRoomName(e.target.value)}
+            />
+            <button
+              className="create-room-button"
+              onClick={() => {
+                createRoom(createRoomName);
+              }}
+            >
+              Create
+            </button>
           </div>
           <div className="rooms-list">
             {rooms.map((r) => (
